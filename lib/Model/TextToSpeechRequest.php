@@ -1,6 +1,6 @@
 <?php
 /**
- * SpeechRecognitionResult
+ * TextToSpeechRequest
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * SpeechRecognitionResult Class Doc Comment
+ * TextToSpeechRequest Class Doc Comment
  *
  * @category Class
- * @description Result of recognizing speech
+ * @description Input to a Text To Speech request
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class SpeechRecognitionResult implements ModelInterface, ArrayAccess
+class TextToSpeechRequest implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $swaggerModelName = 'SpeechRecognitionResult';
+    protected static $swaggerModelName = 'TextToSpeechRequest';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,7 +58,8 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerTypes = [
-        'text_result' => 'string'
+        'format' => 'string',
+        'text' => 'string'
     ];
 
     /**
@@ -67,7 +68,8 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $swaggerFormats = [
-        'text_result' => null
+        'format' => null,
+        'text' => null
     ];
 
     /**
@@ -97,7 +99,8 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'text_result' => 'TextResult'
+        'format' => 'Format',
+        'text' => 'Text'
     ];
 
     /**
@@ -106,7 +109,8 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'text_result' => 'setTextResult'
+        'format' => 'setFormat',
+        'text' => 'setText'
     ];
 
     /**
@@ -115,7 +119,8 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'text_result' => 'getTextResult'
+        'format' => 'getFormat',
+        'text' => 'getText'
     ];
 
     /**
@@ -178,7 +183,8 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['text_result'] = isset($data['text_result']) ? $data['text_result'] : null;
+        $this->container['format'] = isset($data['format']) ? $data['format'] : null;
+        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
     }
 
     /**
@@ -207,25 +213,49 @@ class SpeechRecognitionResult implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets text_result
+     * Gets format
      *
      * @return string
      */
-    public function getTextResult()
+    public function getFormat()
     {
-        return $this->container['text_result'];
+        return $this->container['format'];
     }
 
     /**
-     * Sets text_result
+     * Sets format
      *
-     * @param string $text_result Recognition result in text format
+     * @param string $format File format for output audio file: wav or mp3, default is mp3
      *
      * @return $this
      */
-    public function setTextResult($text_result)
+    public function setFormat($format)
     {
-        $this->container['text_result'] = $text_result;
+        $this->container['format'] = $format;
+
+        return $this;
+    }
+
+    /**
+     * Gets text
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->container['text'];
+    }
+
+    /**
+     * Sets text
+     *
+     * @param string $text Text to be converted to speech
+     *
+     * @return $this
+     */
+    public function setText($text)
+    {
+        $this->container['text'] = $text;
 
         return $this;
     }

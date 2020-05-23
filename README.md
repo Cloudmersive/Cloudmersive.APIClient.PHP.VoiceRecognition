@@ -4,7 +4,7 @@ Speech APIs enable you to recognize speech and convert it to text using advanced
 [Cloudmersive Speech API](https://www.cloudmersive.com/voice-recognition-and-speech-api) provides advanced voice recognition and text to speech capabilities
 
 - API version: v1
-- Package version: 1.4.1
+- Package version: 1.4.2
 
 
 ## Requirements
@@ -88,11 +88,13 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *RecognizeApi* | [**recognizeFile**](docs/Api/RecognizeApi.md#recognizefile) | **POST** /speech/recognize/file | Recognize audio input as text using machine learning
 *SpeakApi* | [**speakPost**](docs/Api/SpeakApi.md#speakpost) | **POST** /speech/speak/text/basicVoice/{format} | Perform text-to-speech on a string
+*SpeakApi* | [**speakTextToSpeech**](docs/Api/SpeakApi.md#speaktexttospeech) | **POST** /speech/speak/text/voice/basic/audio | Perform text-to-speech on a string
 
 
 ## Documentation For Models
 
  - [SpeechRecognitionResult](docs/Model/SpeechRecognitionResult.md)
+ - [TextToSpeechRequest](docs/Model/TextToSpeechRequest.md)
 
 
 ## Documentation For Authorization
