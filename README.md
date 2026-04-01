@@ -4,7 +4,7 @@ Speech APIs enable you to recognize speech and convert it to text using advanced
 [Cloudmersive Speech API](https://www.cloudmersive.com/voice-recognition-and-speech-api) provides advanced voice recognition and text to speech capabilities
 
 - API version: v1
-- Package version: 1.4.2
+- Package version: 1.5.0
 
 
 ## Requirements
@@ -68,13 +68,15 @@ $apiInstance = new Swagger\Client\Api\RecognizeApi(
     new GuzzleHttp\Client(),
     $config
 );
-$speech_file = "/path/to/file.txt"; // \SplFileObject | Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+$language_code = ""; // string | ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.
+$recognition_mode = "Normal"; // string | Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.
+$speech_file = "/path/to/file.txt"; // \SplFileObject | 
 
 try {
-    $result = $apiInstance->recognizeFile($speech_file);
+    $result = $apiInstance->speechRecognizeFilePost($language_code, $recognition_mode, $speech_file);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RecognizeApi->recognizeFile: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling RecognizeApi->speechRecognizeFilePost: ', $e->getMessage(), PHP_EOL;
 }
 
 ?>
@@ -82,19 +84,19 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.cloudmersive.com*
+All URIs are relative to *https://testapi.cloudmersive.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*RecognizeApi* | [**recognizeFile**](docs/Api/RecognizeApi.md#recognizefile) | **POST** /speech/recognize/file | Recognize audio input as text using machine learning
-*SpeakApi* | [**speakPost**](docs/Api/SpeakApi.md#speakpost) | **POST** /speech/speak/text/basicVoice/{format} | Perform text-to-speech on a string
-*SpeakApi* | [**speakTextToSpeech**](docs/Api/SpeakApi.md#speaktexttospeech) | **POST** /speech/speak/text/voice/basic/audio | Perform text-to-speech on a string
+*RecognizeApi* | [**speechRecognizeFilePost**](docs/Api/RecognizeApi.md#speechrecognizefilepost) | **POST** /speech/recognize/file | Recognize audio input as text using Advanced AI
+*SpeakApi* | [**speechSpeakTextVoiceBasicAudioPost**](docs/Api/SpeakApi.md#speechspeaktextvoicebasicaudiopost) | **POST** /speech/speak/text/voice/basic/audio | Generate audio from text using Advanced AI
 
 
 ## Documentation For Models
 
  - [SpeechRecognitionResult](docs/Model/SpeechRecognitionResult.md)
  - [TextToSpeechRequest](docs/Model/TextToSpeechRequest.md)
+ - [TokenTimestamp](docs/Model/TokenTimestamp.md)
 
 
 ## Documentation For Authorization

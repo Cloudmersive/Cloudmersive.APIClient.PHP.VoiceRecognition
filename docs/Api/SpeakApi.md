@@ -1,19 +1,18 @@
 # Swagger\Client\SpeakApi
 
-All URIs are relative to *https://api.cloudmersive.com*
+All URIs are relative to *https://testapi.cloudmersive.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**speakPost**](SpeakApi.md#speakPost) | **POST** /speech/speak/text/basicVoice/{format} | Perform text-to-speech on a string
-[**speakTextToSpeech**](SpeakApi.md#speakTextToSpeech) | **POST** /speech/speak/text/voice/basic/audio | Perform text-to-speech on a string
+[**speechSpeakTextVoiceBasicAudioPost**](SpeakApi.md#speechSpeakTextVoiceBasicAudioPost) | **POST** /speech/speak/text/voice/basic/audio | Generate audio from text using Advanced AI
 
 
-# **speakPost**
-> object speakPost($format, $text)
+# **speechSpeakTextVoiceBasicAudioPost**
+> string speechSpeakTextVoiceBasicAudioPost($body)
 
-Perform text-to-speech on a string
+Generate audio from text using Advanced AI
 
-Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
+Converts text to speech using advanced AI. Supports English, Spanish, French, Hindi, Italian, Japanese, Portuguese, and Chinese. Specify language with LanguageCode (ISO 639-3, default: eng) and gender with Gender (Male or Female, default: Female). Output format is controlled by the Format field (mp3 or wav, default: mp3). Consumes 1 API call per second of generated audio.
 
 ### Example
 ```php
@@ -31,14 +30,13 @@ $apiInstance = new Swagger\Client\Api\SpeakApi(
     new GuzzleHttp\Client(),
     $config
 );
-$format = "format_example"; // string | File format to generate response in; possible values are \"mp3\" or \"wav\"
-$text = "text_example"; // string | The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \"The quick brown fox jumps over the lazy dog.\"
+$body = new \Swagger\Client\Model\TextToSpeechRequest(); // \Swagger\Client\Model\TextToSpeechRequest | String input request
 
 try {
-    $result = $apiInstance->speakPost($format, $text);
+    $result = $apiInstance->speechSpeakTextVoiceBasicAudioPost($body);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SpeakApi->speakPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SpeakApi->speechSpeakTextVoiceBasicAudioPost: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -47,12 +45,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **format** | **string**| File format to generate response in; possible values are \&quot;mp3\&quot; or \&quot;wav\&quot; |
- **text** | **string**| The text you would like to conver to speech.  Be sure to surround with quotes, e.g. \&quot;The quick brown fox jumps over the lazy dog.\&quot; |
+ **body** | [**\Swagger\Client\Model\TextToSpeechRequest**](../Model/TextToSpeechRequest.md)| String input request | [optional]
 
 ### Return type
 
-**object**
+**string**
 
 ### Authorization
 
@@ -60,63 +57,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
+ - **Content-Type**: application/json, text/json, application/_*+json
  - **Accept**: application/octet-stream
-
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
-# **speakTextToSpeech**
-> object speakTextToSpeech($req_config)
-
-Perform text-to-speech on a string
-
-Takes as input a string and a file format (mp3 or wav) and outputs a wave form in the appropriate format.
-
-### Example
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-// Configure API key authorization: Apikey
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('Apikey', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Apikey', 'Bearer');
-
-$apiInstance = new Swagger\Client\Api\SpeakApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$req_config = new \Swagger\Client\Model\TextToSpeechRequest(); // \Swagger\Client\Model\TextToSpeechRequest | String input request
-
-try {
-    $result = $apiInstance->speakTextToSpeech($req_config);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling SpeakApi->speakTextToSpeech: ', $e->getMessage(), PHP_EOL;
-}
-?>
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **req_config** | [**\Swagger\Client\Model\TextToSpeechRequest**](../Model/TextToSpeechRequest.md)| String input request |
-
-### Return type
-
-**object**
-
-### Authorization
-
-[Apikey](../../README.md#Apikey)
-
-### HTTP request headers
-
- - **Content-Type**: application/json, text/json, application/xml, text/xml, application/x-www-form-urlencoded
- - **Accept**: application/json, text/json, application/xml, text/xml
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

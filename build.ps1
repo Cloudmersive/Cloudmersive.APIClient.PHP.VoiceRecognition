@@ -1,5 +1,13 @@
-﻿#Remove-Item –path ./ –recurse
-& java -jar swagger-codegen-cli.jar generate -i https://api.cloudmersive.com/swagger/api/speech -l php -c packageconfig.json
+﻿
+
+#Remove-Item –path ./ –recurse
+
+
+Invoke-WebRequest -Uri 'https://api-console.cloudmersive.com/swagger/api/spec/speech' -OutFile '.\speech-api-swagger.json'
+(Get-Content .\speech-api-swagger.json).replace('localhost', "api.cloudmersive.com") | Set-Content .\speech-api-swagger.json
+(Get-Content .\speech-api-swagger.json).replace('"http"', '"https"') | Set-Content .\speech-api-swagger.json
+
+& java -jar swagger-codegen-cli-2.4.5.jar generate -i .\speech-api-swagger.json -l php -c packageconfig.json
 #(Get-Content ./client/package.json).replace('v1', '1.0.1') | Set-Content ./client/package.json
 Copy-Item ./cloudmersive_voicerecognition_api_client/* -Destination . -Recurse -Force
 Remove-Item –path ./cloudmersive_voicerecognition_api_client –recurse
@@ -14,4 +22,5 @@ Remove-Item –path ./cloudmersive_voicerecognition_api_client –recurse
 (Get-Content ./composer.json).replace('https://github.com/swagger-api/swagger-codegen', 'https://cloudmersive.com') | Set-Content ./composer.json
 (Get-Content ./composer.json).replace('http://swagger.io', 'https://cloudmersive.com') | Set-Content ./composer.json
 
-& C:\tools\php71\php C:\ProgramData\ComposerSetup\bin\composer.phar install
+#& C:\tools\php71\php C:\ProgramData\ComposerSetup\bin\composer.phar install
+& php C:\ProgramData\ComposerSetup\bin\composer.phar install

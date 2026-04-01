@@ -1,18 +1,18 @@
 # Swagger\Client\RecognizeApi
 
-All URIs are relative to *https://api.cloudmersive.com*
+All URIs are relative to *https://testapi.cloudmersive.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**recognizeFile**](RecognizeApi.md#recognizeFile) | **POST** /speech/recognize/file | Recognize audio input as text using machine learning
+[**speechRecognizeFilePost**](RecognizeApi.md#speechRecognizeFilePost) | **POST** /speech/recognize/file | Recognize audio input as text using Advanced AI
 
 
-# **recognizeFile**
-> \Swagger\Client\Model\SpeechRecognitionResult recognizeFile($speech_file)
+# **speechRecognizeFilePost**
+> \Swagger\Client\Model\SpeechRecognitionResult speechRecognizeFilePost($language_code, $recognition_mode, $speech_file)
 
-Recognize audio input as text using machine learning
+Recognize audio input as text using Advanced AI
 
-Uses advanced machine learning to convert input audio, which can be mp3 or wav, into text.
+Uses advanced AI to convert input audio to text. Supports WAV, MP3, M4A, FLAC, OGG, and WMA formats. Consumes 1 API call per second of audio in Fast mode, 5 API calls per second in Normal mode, and 10 API calls per second in Advanced mode.
 
 ### Example
 ```php
@@ -30,13 +30,15 @@ $apiInstance = new Swagger\Client\Api\RecognizeApi(
     new GuzzleHttp\Client(),
     $config
 );
-$speech_file = "/path/to/file.txt"; // \SplFileObject | Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported.
+$language_code = ""; // string | ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect.
+$recognition_mode = "Normal"; // string | Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments.
+$speech_file = "/path/to/file.txt"; // \SplFileObject | 
 
 try {
-    $result = $apiInstance->recognizeFile($speech_file);
+    $result = $apiInstance->speechRecognizeFilePost($language_code, $recognition_mode, $speech_file);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling RecognizeApi->recognizeFile: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling RecognizeApi->speechRecognizeFilePost: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -45,7 +47,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **speech_file** | **\SplFileObject**| Speech file to perform the operation on.  Common file formats such as WAV, MP3 are supported. |
+ **language_code** | **string**| ISO 639-3 three-letter language code (e.g. eng, spa, fra). Empty for auto-detect. | [optional] [default to ]
+ **recognition_mode** | **string**| Recognition mode: Fast, Normal (default), or Advanced. Advanced is only available on Private Cloud and Managed Instance deployments. | [optional] [default to Normal]
+ **speech_file** | **\SplFileObject**|  | [optional]
 
 ### Return type
 
@@ -58,7 +62,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: application/json, text/json, application/xml, text/xml
+ - **Accept**: text/plain, application/json, text/json
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
